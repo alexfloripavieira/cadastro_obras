@@ -1,4 +1,4 @@
-# Aplicação WEB para cadastro de usuario #
+# Aplicação WEB para cadastro de obras #
 
 ______________________________________________________________________________________________________________________________________________________________________________________
 # Primeiro passo #
@@ -36,7 +36,7 @@ Subir o servidor Python atraves do comando abaixo:
 _________________________________________________________________________________________________________________________________________________________________________________
 # Execução do aplicativo #
 
-Após rodar todas as instancias, no navegador em localHost  127.0.0.1 na porta 8000 acessar a interface do usuario para cadastro de usuarios
+Após rodar todas as instancias, no navegador em localHost  127.0.0.1 na porta 8000 acessar a interface do usuario para cadastro de obras
 
 ' http://127.0.0.1:8000 '
 ____________________________________________________________________________________________________________________________________________________________________________
