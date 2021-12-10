@@ -1,0 +1,30 @@
+.input-cpf-cnpj{
+    max-width: 300px;
+    margin: 30px;
+}
+
+.btn-cadastrar{
+    padding: 30px; 
+}
+
+.div-btns{
+    margin-left: 30px;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.div-message{
+    margin-top:30px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.table-documents{
+    width: 95% !important;
+    margin: 30px;
+}

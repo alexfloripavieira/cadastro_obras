@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+<div class="div-message">
+    {%include 'partials/messages.html'%}
+</div>
+
+<form method="POST" action="{%url 'home'%}">
+    {%csrf_token%}
+    <div>
+      <table>
+        <tbody>
+          <tr>
+            <th>
+              <input class="form-control input-cpf-cnpj" name="nome" id="nome" type="text"
+                value="{{request.POST.nome}}"
+                placeholder="Nome"></input>
+            </th>
+            <th>
+              <input class="form-control input-cpf-cnpj" name="cpf_cnpj" id="cpf_cnpj" type="text"
+                value="{{request.POST.cpf_cnpj}}"
+                placeholder="CPF/CNPJ"></input>
+            </th>
+            <th>
+              <input class="form-control input-cpf-cnpj" name="email" id="email" type="email"
+                value="{{request.POST.email}}"
+                placeholder="E-Mail"></input>
+            </th>
+            <th>
+              <input class="form-control input-cpf-cnpj" name="endereco" id="endereco" type="text"
+                value="{{request.POST.endereco}}"
+                placeholder="Endereço"></input>
+            </th>
+            <th>
+              <input class="form-control input-cpf-cnpj" name="porte" id="porte" type="text"
+                value="{{request.POST.porte}}"
+                placeholder="Porte da Empresa"></input>
+            </th>
+            <th>
+              <input class="form-control input-cpf-cnpj" name="func" id="func" type="number"
+                value="{{request.POST.func}}"
+                placeholder="Numero Funcionários"></input>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-documents" >
+      <table class="table">
+        <thead>
+          <tr>
+           <th scope="col">Data de Inicio</th>
+           <th scope="col">Data de Entrega(Previsão)</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <th>
+                <input class="form-control input-cpf-cnpj" name="data_inicio"  id="data_inicio" type="date"
+                  value="{{request.POST.data_inicio}}"
+                  placeholder="Data de Inicio"></input>
+              </td>
+              <th>
+                <input class="form-control input-cpf-cnpj" name="data_termino"  id="data_termino" type="date"
+                  value="{{request.POST.data_termino}}"
+                  placeholder="Data de Termino(Previsto)"></input>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="div-btns">
+        <input type="submit" name='action' class="btn btn-light" value="Adicionar">
+        <input type="submit" name='action' class="btn btn-light" value="Buscar">
+    </div>
+</form>
+
+<div class="table-documents">
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF/CNPJ</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Porte da Empresa</th>
+            <th scope="col">Numero Funcionários</th>
+            <th scope="col">Data Inicio</th>
+            <th scope="col">Data Entrega(Previsão)</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for document in documents %}
+          <tr>
+            <td>{{document.nome}}</td>
+            <td>{{document.cpf_cnpj}}</td>
+            <td>{{document.endereco}}</td>
+            <td>{{document.porte}}</td>
+            <td>{{document.func}}</td>
+            <td>{{document.data_inicio}}</td>
+            <td>{{document.data_termino}}</td>
+            <td>
+              <table>
+                <tr>
+                  <td>
+                    <form method="GET" action="{%url 'person' document.id %}">
+                      <input type="submit" class="btn btn-info" value="Editar">
+                  </form>
+                  </td>
+
+                  <td>
+                    <form method="POST" action="{%url 'home'%}">
+                      {%csrf_token%}
+                      <input type="submit" name='action' class="btn btn-danger" value="Excluir">
+      
+                      <input class="form-control input-cpf-cnpj" name="id" id="id" type="hidden"
+                      value="{{document.id}}">
+                  </form>
+                  </td>
+
+                </tr>
+              </table>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        {% for document in documents.paginator.page_range %}
+        {% if documents.number == document %}
+            <li class="page-item active"><a class="page-link" href="?p={{document}}&termo={{ request.GET.termo }}">{{document}}</a></li>
+        {% else %}
+            <li class="page-item"><a class="page-link" href="?p={{document}}&termo={{ request.GET.termo }}">{{document}}</a></li>
+        {% endif %}
+        {% endfor %}
+        </ul>
+    </nav>
+</div>
+
+</div>
+
+{% endblock container %}

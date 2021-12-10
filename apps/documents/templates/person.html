@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+<div class="div-message">
+    {%include 'partials/messages.html'%}
+</div>
+
+<form method="POST" action="{%url 'person' document.id %}">
+    {%csrf_token%}
+    <div>
+              <input class="form-control input-cpf-cnpj" name="nome" id="nome" type="text"
+                value="{{document.nome}}"
+                placeholder="Nome"></input>
+             
+              <input class="form-control input-cpf-cnpj" name="cpf_cnpj" id="cpf_cnpj" type="text"
+                value="{{document.cpf_cnpj}}"
+                placeholder="CPF/CNPJ"></input>
+              
+              <input class="form-control input-cpf-cnpj" name="endereco" id="endereco" type="text"
+                value="{{document.endereco}}"
+                placeholder="Endereço"></input>
+              
+              <input class="form-control input-cpf-cnpj" name="porte" id="porte" type="text"
+                value="{{document.porte}}"
+                placeholder="Porte da Empresa"></input>
+              
+              <input class="form-control input-cpf-cnpj" name="func" id="func" type="number"
+                value="{{document.func}}"
+                placeholder="Numero de Funcionários"></input>  
+             
+              <input class="form-control input-cpf-cnpj" name="data_inicio"  id="data_inicio" type="date"
+                value="{{document.data_inicio|date:'Y-m-d'}}"
+                placeholder="Data de Inicio"></input>
+
+              <input class="form-control input-cpf-cnpj" name="data_termino"  id="data_termino" type="date"
+                value="{{document.data_termino|date:'Y-m-d'}}"
+                placeholder="Data de Termino(Previsto)"></input>  
+             
+              <input class="form-control input-cpf-cnpj" name="email" id="email" type="email"
+                value="{{document.email}}"
+                placeholder="E-mail"></input>
+                
+    </div>
+    <div class="div-btns">
+        <input type="submit" name='action' class="btn btn-primary" value="Salvar">
+    </div>
+</form>
+
+{% endblock container %}
